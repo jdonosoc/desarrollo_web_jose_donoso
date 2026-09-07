@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+	<title>Avistamientos</title>
+    <link rel="stylesheet" type="text/css" href="../css/avistamientos.css">
+</head>
+
+<body>
+    <header>
+        <img src="../condor1.jpg" alt="Descripción de la imagen del encabezado">
+    </header>
+    <hr>
+    <main>
+    <div>
+        <h1>Registros</h1>
+    </div>
+    <hr>
+        <section id="registrar-avistamiento">
+            <h2>Registrar avistamiento</h2>
+            
+                <div class="main-container">
+                    <div id="val-box" hidden>
+                        <p id="val-msg"></p>
+                        <ul id="val-list"></ul>
+                    </div>
+                    <form id = "registro-avistamiento" name="myForm" method="post" enctype="multipart/form-data">
+                        <label for="ave">Nombre de ave</label>
+                        <input type="text" name="ave" id="ave" minlength="3" required><br>
+
+                        <label for="select-tipo">Tipo de ave</label>
+                        <select name="select-tipo" id="select-tipo" required>
+                            <option value="">Seleccione un tipo</option>
+                        </select><br>
+
+                        <label for="select-region">Región</label>
+                        <select name="select-region" id="select-region" required>
+                            <option value="">Seleccione una región</option>
+                        </select><br>
+
+                        <label for="select-comuna">Comuna</label>
+                        <select name="select-comuna" id="select-comuna" required>
+                            <option value="">Seleccione una comuna</option>
+                        </select><br>
+
+                        <label for="date">Fecha de avistamiento</label>
+                        <input type="date" id="date" name="date" required>
+                        
+                        <label for="files">Registro</label>
+                        <input type="file" name="files" id="files" multiple accept="image/*,.pdf, video/*" required><br>
+
+                        <button id="registrar" type="submit">Registrar</button>
+                    </form>
+                </div>
+            
+        </section>
+        <hr>
+
+        <button type="button" id="toggle-listado">Mostrar listado de avistamientos</button>
+        <section id="listado-avistamientos" hidden>
+            <h2>Listado de avistamientos</h2>
+            <div class="main-container">
+                <form id = "filtros">
+                    <label for ="filtro-tipo">Tipo de ave</label>
+                    <select name="filtro-tipo" id="filtro-tipo">
+                        <option value="">Todos</option>
+                    </select>
+
+                    <label for="ordenar-por">Ordenar por</label>
+                    <select name="ordenar-por" id="ordenar-por">
+                        <option value="">Seleccione una opción</option>
+                    </select>
+                </form>
+
+                    <table id="tabla-avistamientos">
+
+                    <thead>
+                        <tr>
+                            <th scope="col">Ave</th>
+                            <th scope="col">Tipo</th>
+                            <th scope="col">Lugar</th>
+                            <th scope="col">Voluntario</th>
+                            <th scope="col">Fecha</th>
+                            <th scope="col">Registro</th>
+                        </tr>
+                    </thead>
+                    <tbody id="cuerpo-tabla">
+
+                    </tbody>
+                    </table>
+
+                    <nav aria-label="Paginación de avistamientos">
+                        <button type="button" id="pagina-anterior">Anterior</button>
+                        <span id="indicador-pagina">Página 1 de 1</span>
+                        <button type="button" id="pagina-siguiente">Siguiente</button>
+                    </nav>
+                </div>
+        </section>
+
+        <button type="button" id="toggle-metricas">Mostrar métricas</button>
+        <section id="metricas" hidden>
+            <h2>Indicadores y métricas</h2>
+            <div class="main-container">
+                <figure>
+                    <canvas id="grafico-voluntarios-anio"></canvas>
+                    <figcaption>Personas registradas por año</figcaption>
+                </figure>
+
+                <figure>
+                    <canvas id="grafico-tipos"></canvas>
+                    <figcaption>Avistamientos por tipo de ave</figcaption>
+                </figure>
+
+                <figure>
+                    <canvas id="grafico-lugares"></canvas>
+                    <figcaption>Avistamientos por lugar</figcaption>
+                </figure>
+            </div>
+        </section>
+    </main>
+    <script src="../js/select.js"></script>
+    <script src="../js/validador_avistamientos.js"></script>
+    <script src="../js/metricas.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</body>
+
+</html>

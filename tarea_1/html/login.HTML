@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+	<title>Registro: Aves de Chile</title>
+    <link rel="stylesheet" type="text/css" href="../css/login.css">
+</head>
+<body>
+    <header class="encabezado-imagen">
+        <img src="../condor1.jpg" alt="Descripción de la imagen del encabezado">
+    </header>
+    <div class="main-container">
+        <div id="val-box" hidden>
+            <p id="val-msg"></p>
+            <ul id="val-list"></ul>
+        </div>
+        <div>
+            <h1>Registro de usuarios</h1>
+        </div>
+        <form name="myForm" method="post" enctype="multipart/form-data">
+            <label for="name">Nombre</label>
+            <input type="text" name="name" id="name" minlength="3" required><br>
+
+            <label for="email">Email</label>
+            <input type="email" name="email" id="email" minlength="5" required><br>
+
+            <label for="contrasenna">Contraseña</label>
+            <input type="password" name="contrasenna" id="contrasenna" minlength="7" required><br>
+
+            <label for="phone">Teléfono</label>
+            <input type="text" name="phone" id="phone" minlength="9" required><br>
+
+            <label for="select-region">Región</label>
+            <select name="select-region" id="select-region" required>
+                <option value="">Seleccione una región</option>
+            </select><br>
+
+            <label for="select-comuna">Comuna</label>
+            <select name="select-comuna" id="select-comuna" required>
+                <option value="">Seleccione una comuna</option>
+            </select><br>
+            
+            <button id="submit-btn" type="button">Registrar</button>
+        </form>
+    </div>
+    <script src="../js/select.js"></script>
+    <script src="../js/validador_registro.js"></script>
+</body>
+</html>
