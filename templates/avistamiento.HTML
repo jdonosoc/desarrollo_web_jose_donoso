@@ -1,0 +1,50 @@
+{% extends "base.html" %} 
+
+{% block title %}Registro de avistamientos{% endblock %}
+
+{% block css %}
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/registro.css')}}">
+{% endblock %}
+
+{% block content %}
+    <div class ="main-container">
+        <h2>Registrar avistamiento</h2>
+        <form id="registro-avistamiento" action="{{ url_for('registroAvistamiento') }}" method="POST" enctype="multipart/form-data">
+            <label for="select-ave">Ave</label>
+            <select name="select-ave" id="select-ave" required>
+                <option value="">Seleccione un Ave</option>
+                {% for ave in aves %}
+                    <option value="{{ ave.id }}">{{ ave.nombre }}</option>
+                {% endfor %}
+            </select><br>
+
+            <label for="lugar">Lugar</label>
+            <input type="text" name="lugar" id="lugar" minlength="3" required><br>
+
+            <label for="descripcion">Descripción</label>
+            <textarea name="descripcion" id="descripcion" minlength="10" required></textarea><br>
+
+            <label for="date">Fecha de avistamiento</label>
+            <input type="date" id="date" name="date" required>
+
+            <label for="time">Hora de avistamiento</label>
+            <input type="time" id="time" name="time" required><br>
+                            
+            <label for="files">Registro</label>
+            <input type="file" name="files" id="files" multiple accept="image/*,.pdf, video/*" required><br>
+
+            <button id="submit-btn" type="submit">Registrar avistamiento</button>
+        </form>
+    </div>
+    {% if mensaje %}
+        <p class="mensaje-exito">{{ mensaje }}</p>
+    {% endif %}
+    {% if error %}
+        <p class="mensaje-error">{{ error }}</p>
+    {% endif %}
+
+{% endblock %}
+
+{% block javascript %}
+    <script src="{{ url_for('static', filename='js/validador_avistamientos.js') }}"></script>
+{% endblock %}

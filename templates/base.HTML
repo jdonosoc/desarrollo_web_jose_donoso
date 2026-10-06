@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <title>{% block title %}{% endblock %}</title>
+    {% block css %}
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/registro.css') }}"
+    />
+    {% endblock %}
+  </head>
+
+  <header>
+    <nav class="menu">
+        <a href="{{ url_for('index') }}" {% if request.endpoint == 'index' %}class="activo"{% endif %}>Inicio</a>
+        <a href="{{ url_for('registro') }}" {% if request.endpoint == 'registro' %}class="activo"{% endif %}>Registro</a>
+        <a href="{{ url_for('registroAvistamiento') }}" {% if request.endpoint == 'registroAvistamiento' %}class="activo"{% endif %}>Avistamiento</a>
+        <a href="{{ url_for('listado') }}" {% if request.endpoint == 'listado' %}class="activo"{% endif %}>Listado</a>
+        <a href="{{ url_for('estadisticas') }}" {% if request.endpoint == 'estadisticas' %}class="activo"{% endif %}>Estadísticas</a>
+    </nav>
+</header>
+
+  <body>
+    <header class="encabezado-imagen">
+        <img src="{{ url_for('static', filename='condor1.jpg') }}" alt="Encabezado">
+    </header>
+    {% block content %}{% endblock %} {% block javascript %}{% endblock %}
+  </body>
+</html>

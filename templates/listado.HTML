@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+
+{% block title %}Listado de avistamientos{% endblock %}
+
+{% block css %}
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/avistamientos.css') }}">
+{% endblock %}
+
+{% block content %}
+    <section id="listado-avistamientos">
+        <h2>Listado de avistamientos</h2>
+        <div class="main-container">
+            <form id="filtros">
+                <label for="filtro-ave">Ave</label>
+                <select name="filtro-ave" id="filtro-ave">
+                    <option value="">Todas</option>
+                    {% for ave in aves %}
+                        <option value="{{ ave.nombre }}">{{ ave.nombre }}</option>
+                    {% endfor %}
+                </select>
+
+                <label for="ordenar-por">Ordenar por</label>
+                <select name="ordenar-por" id="ordenar-por">
+                    <option value="">Seleccione una opción</option>
+                    <option value="Ave (A-Z)">Ave (A-Z)</option>
+                    <option value="Ave (Z-A)">Ave (Z-A)</option>
+                    <option value="Lugar (A-Z)">Lugar (A-Z)</option>
+                    <option value="Lugar (Z-A)">Lugar (Z-A)</option>
+                    <option value="Fecha (más reciente)">Fecha (más reciente)</option>
+                    <option value="Fecha (menos reciente)">Fecha (menos reciente)</option>
+                </select>
+            </form>
+
+            <table id="tabla-avistamientos">
+                <thead>
+                    <tr>
+                        <th scope="col">Ave</th>
+                        <th scope="col">Lugar</th>
+                        <th scope="col">Voluntario</th>
+                        <th scope="col">Fecha</th>
+                        <th scope="col">Registro</th>
+                    </tr>
+                </thead>
+                <tbody id="cuerpo-tabla">
+                </tbody>
+            </table>
+
+            <nav aria-label="Paginación de avistamientos">
+                <button type="button" id="pagina-anterior">Anterior</button>
+                <span id="indicador-pagina">Página 1 de 1</span>
+                <button type="button" id="pagina-siguiente">Siguiente</button>
+            </nav>
+        </div>
+    </section>
+{% endblock %}
+
+{% block javascript %}
+    <script id="datos-avistamientos" type="application/json">{{ avistamientos | tojson }}</script>
+    <script src="{{ url_for('static', filename='js/listado.js') }}"></script>
+{% endblock %}

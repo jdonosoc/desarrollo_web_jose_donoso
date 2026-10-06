@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block title %}Estadísticas{% endblock %}
+
+{% block css %}
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/registro.css')}}">
+{% endblock %}
+
+{% block content %}
+    <div class="main-container">
+        <h1>Estadísticas de avistamientos</h1>
+        <div class="chart-container">
+            <canvas id="chart"></canvas>
+        </div>
+    </div>
+    <p> Aun no se aun implementa la funcionalidad de estadisticas.
+    <nav>
+        <a href="{{ url_for('index') }}">Volver al menú principal</a>
+    </nav>
+{% endblock %}
+
+{% block javascript %}
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="{{ url_for('static', filename='js/estadisticas.js') }}"></script>
+{% endblock %}

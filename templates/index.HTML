@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block title %}Aves de Chile{% endblock %}
+{% block css %}
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/registro.css')}}">
+{% endblock %}
+{% block content %}
+    <div class="main-container">
+        <h1>Bienvenido a Aves de Chile</h1>
+        <nav>
+            <a href="{{ url_for('registro') }}">Registro de usuarios</a>
+            <a href="{{ url_for('registroAvistamiento') }}">Registrar avistamientos</a>
+            <a href="{{ url_for('listado') }}">Ver avistamientos</a>
+            <a href="{{ url_for('estadisticas') }}">Estadísticas</a>
+        </nav>
+        <section class="ultimos-avistamientos">
+            <h2>Últimos avistamientos</h2>
+            {% if ultimos %}
+                <ul>
+                    {% for a in ultimos %}
+                        <li>{{ a.ave }} - {{ a.lugar }} ({{ a.fecha }})</li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p>Aún no hay avistamientos registrados.</p>
+            {% endif %}
+        </section>
+    </div>
+{% endblock %}
