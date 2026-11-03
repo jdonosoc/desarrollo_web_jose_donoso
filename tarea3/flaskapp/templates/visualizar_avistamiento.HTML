@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+
+{% block title %}Listado de avistamientos{% endblock %}
+
+{% block css %}
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/avistamientos.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/visualizar_avistamiento.css') }}">
+{% endblock %}
+
+{% block content %}
+    <section id="detalle-avistamientos">
+        <div class="main-container">
+            <h1>Detalle del avistamiento</h1>
+            <table id="tabla-avistamientos">
+                <tbody id="cuerpo-tabla">
+                    {% if avistamiento %}
+                    <tr>
+                        <th scope="row">Ave</th>
+                        <td>{{ avistamiento.ave }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Lugar</th>
+                        <td>{{ avistamiento.lugar }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Voluntario</th>
+                        <td>{{ avistamiento.voluntario }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Fecha</th>
+                        <td>{{ avistamiento.fecha }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Registro</th>
+                        <td>
+                            {% if avistamiento.ruta %}
+                                {% set ext = avistamiento.ruta.split('.')[-1].lower() %}
+                                {% if ext in ['mp4', 'webm', 'mov', 'ogg'] %}
+                                    <video controls>
+                                        <source src="{{ url_for('static', filename='uploads/' + avistamiento.ruta) }}">
+                                        Tu navegador no soporta la reproducción de video.
+                                    </video>
+                                {% else %}
+                                    <img src="{{ url_for('static', filename='uploads/' + avistamiento.ruta) }}" alt="{{ avistamiento.archivo }}">
+                                {% endif %}
+                            {% else %}
+                                {{ avistamiento.archivo or "Sin archivo adjunto" }}
+                            {% endif %}
+                        </td>
+                    </tr>
+                    {% endif %}
+                </tbody>
+            </table>
+            
+            <form id="form-comentario">
+                <h3>Agregar comentario</h3>
+                <label for="nombre">Nombre del comentarista</label>
+                <input type="text" name="nombre" id="nombre" class="caja_comentarios" required placeholder="Tu nombre">
+                <label for="texto">Comentario</label>
+                <textarea name="texto" id="texto" class="caja_comentarios" rows="3" required placeholder="Escribe tu comentario..."></textarea>
+
+                <button id="submit-btn" type="submit">Agregar comentario</button>
+            </form>
+
+            <h3>Comentarios</h3>
+            <div id="lista-comentarios">
+                <p>Cargando comentarios...</p>
+            </div>
+        </div>
+    </section>
+{% endblock %}
+
+{% block javascript %}
+    <script id="datos-avistamientos" type="application/json">{{ avistamiento | tojson }}</script>
+    <script src="{{ url_for('static', filename='js/coments.js') }}"></script>
+{% endblock %}
