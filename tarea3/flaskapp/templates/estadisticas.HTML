@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block title %}Estadísticas{% endblock %}
+
+{% block css %}
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/base.css')}}">
+{% endblock %}
+
+{% block content %}
+<div class="main-container">
+    <div class="stats-container">
+        <h1>Estadísticas de avistamientos</h1>
+        <figure class="highcharts-figure">
+            <div id="line-chart-container"></div>
+        </figure>
+        <figure class="highcharts-figure">
+            <div id="torta-chart-container"></div>
+        </figure>
+        <figure class="highcharts-figure">
+            <div id="bar-chart-container"></div>
+        </figure>
+    </div>
+</div>
+{% endblock %}
+
+{% block javascript %}
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="{{ url_for('static', filename='js/stats.js') }}"></script>
+{% endblock %}

@@ -1,0 +1,33 @@
+#tabla-avistamientos video,
+#tabla-avistamientos img {
+    max-width: 100%;
+    max-height: 400px;
+    border-radius: 8px;
+    display: block;
+    object-fit: contain;
+}
+
+#form-comentario {
+    margin-top: 30px;
+}
+
+#form-comentario textarea,
+.caja_comentarios {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+    font-family: Arial, sans-serif;
+    margin-bottom: 10px;
+}
+
+
+.comentario-item {
+    background: #f9f9f9;
+    padding: 10px 15px;
+    border-radius: 6px;
+    margin-bottom: 10px;
+    border: 1px solid #e0e0e0;
+}
