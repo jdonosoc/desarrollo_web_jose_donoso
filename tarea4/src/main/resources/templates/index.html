@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Buscador de Avistamientos</title>
+
+    <link rel="stylesheet" th:href="@{/css/base.css}" />
+    <link rel="stylesheet" th:href="@{/css/avistamientos.css}" />
+    <link rel="stylesheet" th:href="@{/css/modal.css}" />
+  </head>
+
+  <body>
+    <div th:replace="~{fragments/nav :: navbar}"></div>
+
+    <main>
+      <section id="listado-avistamientos">
+        <div class="main-container">
+          <h1>Buscador de avistamientos</h1>
+
+          <form id="search-form">
+            <label for="search-input">
+              Buscar por nombre de ave, voluntario o comuna:
+            </label>
+            <input
+              id="search-input"
+              name="q"
+              type="text"
+              placeholder="Ej: Cóndor, Juan, Santiago..."
+              autocomplete="off"
+            />
+          </form>
+
+          <p id="search-message" class="search-message">
+            Comienza a escribir para buscar avistamientos.
+          </p>
+
+          <div id="results-wrapper" class="results-wrapper" hidden>
+            <table id="tabla-avistamientos">
+              <thead>
+                <tr>
+                  <th scope="col">Voluntario</th>
+                  <th scope="col">Día</th>
+                  <th scope="col">Ave</th>
+                  <th scope="col">Comuna</th>
+                  <th scope="col">Nota</th>
+                  <th scope="col">Acción</th>
+                </tr>
+              </thead>
+              <tbody id="results-body"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <div
+      class="modal"
+      id="modal"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="modal-title"
+    >
+      <div class="modal-content">
+        <div class="modal-header">
+          <button
+            type="button"
+            class="close"
+            id="close-modal-btn"
+            aria-label="Cerrar"
+          >
+            &times;
+          </button>
+          <h2 id="modal-title">Evaluar Avistamiento</h2>
+        </div>
+        <div class="modal-body">
+          <p id="modal-info" class="modal-info"></p>
+          <label for="nota-select">Selecciona una nota (1 a 7):</label>
+          <select id="nota-select" name="nota">
+            <option value="">-- Seleccione una nota --</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+          </select>
+          <p id="modal-error" class="mensaje-error" hidden></p>
+          <div class="modal-actions">
+            <button type="button" id="save-nota-btn" class="btn-ver-info">
+              Guardar Nota
+            </button>
+            <button type="button" id="cancel-nota-btn" class="btn-cancelar">
+              Cancelar
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script th:src="@{/js/modal.js}"></script>
+    <script th:src="@{/js/search-bar.js}"></script>
+  </body>
+</html>
