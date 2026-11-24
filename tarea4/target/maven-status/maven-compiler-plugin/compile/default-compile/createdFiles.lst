@@ -1,0 +1,13 @@
+com\tarea4\tarea4\models\Region.class
+com\tarea4\tarea4\services\AppService.class
+com\tarea4\tarea4\models\AvistamientoRepository.class
+com\tarea4\tarea4\models\NotaRepository.class
+com\tarea4\tarea4\models\Voluntario.class
+com\tarea4\tarea4\controllers\ApiController.class
+com\tarea4\tarea4\models\Ave.class
+com\tarea4\tarea4\models\Nota.class
+com\tarea4\tarea4\models\Avistamiento.class
+com\tarea4\tarea4\controllers\AppController.class
+com\tarea4\tarea4\models\Comuna.class
+com\tarea4\tarea4\services\ApiService.class
+com\tarea4\tarea4\Tarea4Application.class
